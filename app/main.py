@@ -3,12 +3,8 @@ from fastapi import FastAPI
 # This CORS (Cross Origin Resource Sharing) middleware allows webbrowsers on other domains to send requests to this API endpoints domain.
 from fastapi.middleware.cors import CORSMiddleware
 
-# Import models and schemas module from the respective directories and all of their content.
-from . import models
-# From current folder, inside database module, import "engine" and "get_db" function created there.
-from .database import engine, get_db
 from .routers import post, user, auth, vote
-from .config import Settings  # Environment variables and app settings.
+
 
 # This is used to create all of the models used for defining and creating tables in the Postgres DB via ORM (object-relational mapping).
 # This command tells SQLAlchemy to run the create satatement, to generate all of the tables defined in the models module, when first starting up.
@@ -23,7 +19,7 @@ app = FastAPI()  # Creating an instance.
 """
 
 # Specify the domains allowed to send requests to this API and all of its endpoints.
-origins = ["http://www.google.com"]
+origins = ["*"]
 
 # Default settings from FastAPI official documentation.
 app.add_middleware(

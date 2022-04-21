@@ -35,7 +35,7 @@ def get_db():
 '''DOCUMENTATION PURPOSES:
 This is only used, when wanting to run raw SQL directly using "psycopg2" postgres library to acces the DB, instead of SQLAlchemy.'''
 # Continously run, and break if connection to DB is compromised. Server must not run, if DB cannot be accessed.
-while True:
+'''while True:
     try:
         # First parameter is the host (IP adress), second is the database wanting to connect to (), third is the user wanted to
         # connect as (default name is "postgres"), fourth is user password, fifth is a cursor which is used for mapping the column names to correct column values.
@@ -52,3 +52,4 @@ while True:
         print("Error:", error)
         # Putting a delay of x seconds before re-attempting to establishing connection to DB.
         time.sleep(3)
+'''
