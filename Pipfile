@@ -1,0 +1,52 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+setuptools = "*"
+uvicorn = {extras = ["standard"], version = "*"}
+aiofiles = "*"
+aniso8601 = "*"
+async-exit-stack = "*"
+async-generator = "*"
+certifi = "*"
+charset-normalizer = "*"
+click = "*"
+colorama = "*"
+dnspython = "*"
+email-validator = "*"
+graphene = "*"
+graphql-core = "*"
+h11 = "*"
+idna = "*"
+itsdangerous = "*"
+jinja2 = "*"
+markupsafe = "*"
+orjson = "*"
+promise = "*"
+pydantic = "*"
+python-dotenv = "*"
+python-multipart = "*"
+pyyaml = "*"
+requests = "*"
+rx = "*"
+six = "*"
+starlette = "*"
+typing-extensions = "*"
+ujson = "*"
+urllib3 = "*"
+watchgod = "*"
+websockets = "*"
+fastapi = "*"
+psycopg2 = "*"
+sqlalchemy = "*"
+passlib = {extras = ["bcrypt"], version = "*"}
+python-jose = {extras = ["cryptography"], version = "*"}
+alembic = "*"
+
+[dev-packages]
+autopep8 = "*"
+
+[requires]
+python_version = "3.10"
