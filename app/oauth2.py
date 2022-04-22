@@ -19,9 +19,9 @@ from .config import settings
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
 
 # Default setting, long string from documentation.
-SECRET_KEY = settings.SECRET_KEY
-ALGORITHM = settings.ALGORITHM  # Default setting from documentation.
-ACCESS_TOKEN_EXPIRE_MINUTES = settings.ACCESS_TOKEN_EXPIRE_MINUTES
+SECRET_KEY = settings.secret_key
+ALGORITHM = settings.algorithm  # Default setting from documentation.
+ACCESS_TOKEN_EXPIRE_MINUTES = settings.access_token_expire_minutes
 
 
 # Data will be encoded into the token. It will be passed in as a variable of type dict.

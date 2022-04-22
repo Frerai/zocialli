@@ -16,7 +16,7 @@ from app.config import settings
 config = context.config
 # Overriding the "sqlalchemy.url" variable in alembic.ini file to avoid hardcoding the DB connection. Using environment variables from the "config" module.
 config.set_main_option(
-    "sqlalchemy.url", f"postgresql://{settings.DATABASE_USERNAME}:{settings.DATABASE_PASSWORD}@{settings.DATABASE_HOSTNAME}:{settings.DATABASE_PORT}/{settings.DATABASE_NAME}")
+    "sqlalchemy.url", f"postgresql://{settings.database_username}:{settings.database_password}@{settings.database_hostname}:{settings.database_port}/{settings.database_name}")
 
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.

@@ -12,7 +12,7 @@ from sqlalchemy.orm import sessionmaker
 from .config import settings
 
 # First, type of database. Second, username (default is "postgres"). Third, password. Fourth, IP address. Fifth, port number. Sixth, database name.
-SQLALCHEMY_DATABASE_URL = f"postgresql://{settings.DATABASE_USERNAME}:{settings.DATABASE_PASSWORD}@{settings.DATABASE_HOSTNAME}:{settings.DATABASE_PORT}/{settings.DATABASE_NAME}"
+SQLALCHEMY_DATABASE_URL = f"postgresql://{settings.database_username}:{settings.database_password}@{settings.database_hostname}:{settings.database_port}/{settings.database_name}"
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 
