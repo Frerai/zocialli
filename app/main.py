@@ -41,5 +41,5 @@ app.include_router(vote.router)
 
 
 @app.get("/")
-async def main():
-    return {"message": "Hello World"}
+def root():
+    return {"message": "Hello, World"}
