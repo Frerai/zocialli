@@ -30,7 +30,7 @@ def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(new_user)
 
-    return new_user
+    return
 
 
 # Must use response model, with the correct schema, to have the response do as desired. To i.e leave out any custom fields like passwords.

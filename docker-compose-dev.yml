@@ -1,0 +1,52 @@
+version: "3" # Any version of docker may be specified, depending on what special features are wanted.
+services:
+  # Services are like containers. Define a service to spin up a container.
+  # Multiple services may be specified, if more services are needed.
+
+  # Name of the service(container).
+  api:
+    build: . # Path of what to build from - the Dockerfile with the build commands. Current directory. Custom image.
+    ports:
+      # <port on localhost>:<port on container>. If traffic is received on localhost port, then forward to port of container.
+      # Port of container is specified in the Dockerfile CMD command.
+      - 8000:8000
+    volumes:
+      # A bind-mount volume, that binds/syncs this container to the local folder containing the app code.
+      # If any changes are made in the app code, those changes will be tranfered over to this container/service.
+      # Syncs whatever files/directory desired, to the path of the docker container. "ro" is optional Read-Only mode.
+      - ./:/usr/src/app
+    # Overriding command, for when making code changes and applying those changes to the container. bash -c allows for multiple commands to be passed in.
+    command: bash -c "uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload && alembic upgrade head"
+
+    env_file:
+      # May also be provided like this, rather than specifying each and every environment variable below.
+      # From the current directory, the .env file.
+      - ./.env
+    environment:
+      # Referencing the "postgres" service below. Tells "api" to use the IP adress of the "postgres" container.
+      # Not specifying any other environment variables here, since they are all imported from above, env_file.
+      # Only hostname needs to be overridden, since a docker container of postgres is used and needs to be referenced here.
+      - DATABASE_HOSTNAME=postgres
+
+    depends_on:
+      # Starts the postgres service BEFORE the api container.
+      - postgres
+
+  # Service/container.
+  postgres:
+    image: postgres # Pre-built default postgres image.
+    environment:
+      - POSTGRES_PASSWORD=password123
+      - POSTGRES_DB=fastapi
+
+    # Data will be lost, whenever container is deleted. A volume must be created.
+    # Volumes allows to save data from a container to the DB on local computer, even if container is shut down or deleted.
+    volumes:
+      # May be called whatever desired. The path in the container "/var/lib..." is what is wanted to be saved.
+      - postgres-db:/var/lib/postgresql/data
+
+# A global volume must be created any time a named volume is used. This is to make the named volumes reusable for multiple containers to access.
+volumes:
+  postgres-db:
+
+
