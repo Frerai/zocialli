@@ -44,6 +44,7 @@ sqlalchemy = "*"
 passlib = {extras = ["bcrypt"], version = "*"}
 python-jose = {extras = ["cryptography"], version = "*"}
 alembic = "*"
+pytest = "*"
 
 [dev-packages]
 autopep8 = "*"

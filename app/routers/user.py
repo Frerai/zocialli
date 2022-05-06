@@ -30,10 +30,11 @@ def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(new_user)
 
-    return
-
+    return new_user
 
 # Must use response model, with the correct schema, to have the response do as desired. To i.e leave out any custom fields like passwords.
+
+
 @router.get("/{id}", response_model=schemas.UserOut)
 def get_user(id: int, db: Session = Depends(get_db)):
     # Querying User table and filtering to look for the user ID.
