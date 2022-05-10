@@ -3,7 +3,7 @@ name: Build and Deploy
 on: [push, pull_request]
 
 jobs:
-  setting_up:
+  building_tests: # Name of job - CI part of Pipeline. Building.
     environment:
       name: testing # The name of the environment set in github.
     env:
@@ -46,3 +46,18 @@ jobs:
         run: |
           pip install pytest
           pytest
+
+  deploy: # Name of job - CD part of Pipeline. Deploying.
+    runs-on: ubuntu-latest
+    needs: [building_tests]
+    environment:
+      name: production # Name of environment as set as environment in Github
+    steps:
+      - name: Pull git repo
+        uses: actions/checkout@v2
+      - name: Deploy and push changes to Heroku
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
+          heroku_email: ${{secrets.HEROKU_EMAIL}}
